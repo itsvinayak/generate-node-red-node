@@ -1,0 +1,21 @@
+{
+  "name": "node_creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "bin": {
+    "create-node": "./src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vinayak",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
