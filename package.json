@@ -1,8 +1,11 @@
 {
   "name": "generate-node-red-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "./src/index.js",
+  "repository": {
+    "url": "https://github.com/itsvinayak/generate-node-red-node.git"
+  },
   "bin": {
     "generate-node-red-node": "./src/index.js"
   },
