@@ -38,14 +38,14 @@ const createNode = (name) => {
     let node = this;
 
     node.on('input', function (msg, send, done) {
-      lib.${functionName}(msg, config, function (err, response) {
-        if (err) {
-          node.error(err, msg);
-        } else {
-          send(response);
-          done();
-        }
-      });
+      // lib.${functionName}(msg, config, function (err, response) {
+      //   if (err) {
+      //     node.error(err, msg);
+      //   } else {
+      //     send(response);
+      //     done();
+      //   }
+      // });
     });
   }
   RED.nodes.registerType('${name}', ${functionName});
