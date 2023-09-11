@@ -1,0 +1,20 @@
+const lib = require('{{lib_path}}')
+
+module.exports = function (RED) {
+  function {{node_function_name}}(config) {
+    RED.nodes.createNode(this, config);
+    let node = this;
+
+    node.on('input', function (msg, send, done) {
+      lib.{{lib_function_name}}(msg, config, function (err, response) {
+        if (err) {
+          node.error(err, msg);
+        } else {
+          send(response);
+          done();
+        }
+      });
+    });
+  }
+  RED.nodes.registerType('{{node_name}}', {{node_function_name}});
+};
