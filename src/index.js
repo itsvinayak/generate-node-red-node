@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
-const chalk = require("chalk");
-const { parseArgs } = require("util");
-const fs = require("fs");
-const inquirer = require("inquirer");
-const path = require("path");
+const chalk = require('chalk');
+const { parseArgs } = require('util');
+const fs = require('fs');
+const inquirer = require('inquirer');
+const path = require('path');
 
-const pwd = process.cwd();
 
 // util prototype functions
-Object.defineProperty(String.prototype, "capitalize", {
+Object.defineProperty(String.prototype, 'capitalize', {
   value: function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
   },
@@ -18,8 +17,9 @@ Object.defineProperty(String.prototype, "capitalize", {
 
 const createNodeJSFile = (jsObj, folderName) => {
   // reading the template file
-  let jsPath = path.join(pwd, "./templates/node_js.txt");
-  let JsTemplate = fs.readFileSync(jsPath, "utf-8");
+  
+  let jsPath = path.resolve(__dirname, '../templates/node_js.txt');
+  let JsTemplate = fs.readFileSync(jsPath, 'utf-8');
   JsTemplate = JsTemplate.replace(/{{node_name}}/g, jsObj.node_name);
   JsTemplate = JsTemplate.replace(
     /{{node_function_name}}/g,
@@ -30,14 +30,14 @@ const createNodeJSFile = (jsObj, folderName) => {
     jsObj.lib_function_name
   );
   JsTemplate = JsTemplate.replace(/{{lib_path}}/g, jsObj.lib_path);
-  console.log(chalk.green.bgBlack("Creating node js file"));
+  console.log(chalk.green.bgBlack('Creating node js file'));
   fs.writeFileSync(`./${folderName}/${jsObj.node_name}.js`, JsTemplate);
   return true;
 };
 
 const createNodeHtmlFile = (htmlObj, folderName) => {
-  let htmlPath = path.join(pwd, "./templates/node_html.txt");
-  let htmlTemplate = fs.readFileSync(htmlPath, "utf-8");
+  let htmlPath = path.resolve(__dirname, '../templates/node_html.txt');
+  let htmlTemplate = fs.readFileSync(htmlPath, 'utf-8');
   htmlTemplate = htmlTemplate.replace(/{{node_name}}/g, htmlObj.node_name);
   htmlTemplate = htmlTemplate.replace(
     /{{node_description}}/g,
@@ -47,14 +47,14 @@ const createNodeHtmlFile = (htmlObj, folderName) => {
     /{{node_category}}/g,
     htmlObj.node_category
   );
-  console.log(chalk.green.bgBlack("Creating node html file"));
+  console.log(chalk.green.bgBlack('Creating node html file'));
   fs.writeFileSync(`./${folderName}/${htmlObj.node_name}.html`, htmlTemplate);
   return true;
 };
 
 const createNodePackageFile = (packageObj, folderName) => {
-  let packagePath = path.join(pwd, "./templates/node_package.txt");
-  let packageTemplate = fs.readFileSync(packagePath, "utf-8");
+  let packagePath = path.resolve(__dirname, '../templates/node_package.txt');
+  let packageTemplate = fs.readFileSync(packagePath, 'utf-8');
   packageTemplate = packageTemplate.replace(
     /{{node_name}}/g,
     packageObj.node_name
@@ -63,36 +63,36 @@ const createNodePackageFile = (packageObj, folderName) => {
     /{{node_description}}/g,
     packageObj.node_description
   );
-  console.log(chalk.green.bgBlack("Creating node package file"));
+  console.log(chalk.green.bgBlack('Creating node package file'));
   fs.writeFileSync(`./${folderName}/package.json`, packageTemplate);
   return true;
 };
 
 const questions = [
   {
-    type: "input",
-    name: "node_name",
-    message: "Enter Node name: ",
+    type: 'input',
+    name: 'node_name',
+    message: 'Enter Node name: ',
   },
   {
-    type: "input",
-    name: "node_description",
-    message: "Enter Node description: ",
+    type: 'input',
+    name: 'node_description',
+    message: 'Enter Node description: ',
   },
   {
-    type: "input",
-    name: "node_category",
-    message: "Enter Node Category: ",
+    type: 'input',
+    name: 'node_category',
+    message: 'Enter Node Category: ',
   },
   {
-    type: "input",
-    name: "lib_function_name",
-    message: "Enter Lib function name: ",
+    type: 'input',
+    name: 'lib_function_name',
+    message: 'Enter Lib function name: ',
   },
   {
-    type: "input",
-    name: "lib_path",
-    message: "Enter Lib Path: ",
+    type: 'input',
+    name: 'lib_path',
+    message: 'Enter Lib Path: ',
   },
 ];
 
@@ -106,17 +106,17 @@ const createNode = () => {
     .prompt(questions)
     .then((answers) => {
       // create node folder
-      let name = answers.node_name || "dummy-node-name";
+      let name = answers.node_name || 'dummy-node-name';
       let folderName = `node-red-contrib-${name}`;
       let node_function_name = name;
       fs.mkdirSync(folderName);
       const jsObj = {};
       jsObj.node_name = name;
       jsObj.lib_function_name =
-        answers.lib_function_name || "dummyFunctionName";
-      jsObj.lib_path = answers.lib_path || "./dummyPath";
+        answers.lib_function_name || 'dummyFunctionName';
+      jsObj.lib_path = answers.lib_path || './dummyPath';
       jsObj.node_function_name = node_function_name
-        .split("-")
+        .split('-')
         .map((word, index) => {
           if (index === 0) {
             return word;
@@ -124,30 +124,30 @@ const createNode = () => {
           word = word.capitalize();
           return word;
         })
-        .join("");
+        .join('');
       let jsRes = createNodeJSFile(jsObj, folderName);
 
       let htmlObj = {};
       htmlObj.node_name = name;
       htmlObj.node_description =
-        answers.node_description || "dummy node description";
-      htmlObj.node_category = answers.node_category || "Category";
+        answers.node_description || 'dummy node description';
+      htmlObj.node_category = answers.node_category || 'Category';
       let htmlRes = createNodeHtmlFile(htmlObj, folderName);
 
       let packageObj = {};
       packageObj.node_name = name;
       packageObj.node_description =
-        answers.node_description || "dummy node description";
+        answers.node_description || 'dummy node description';
       let packageRes = createNodePackageFile(packageObj, folderName);
 
       if (jsRes && htmlRes && packageRes) {
-        console.log(chalk.green.bgBlack("Node created successfully"));
+        console.log(chalk.green.bgBlack('Node created successfully'));
       } else {
-        console.log(chalk.red.bgGreen("Error creating node \n"));
+        console.log(chalk.red.bgGreen('Error creating node \n'));
       }
     })
     .catch((error) => {
-      console.log(chalk.red.bgGreen("Error creating node \n"), error);
+      console.log(chalk.red.bgGreen('Error creating node \n'), error);
     });
 };
 
@@ -157,24 +157,24 @@ const createNode = () => {
  * @description get help for the cli
  */
 const help = () => {
-  console.log(chalk.black.bgYellow("Help : "));
-  console.log(chalk.green(" -h, --help : help"));
-  console.log(chalk.red("NOTE : "));
+  console.log(chalk.black.bgYellow('Help : '));
+  console.log(chalk.green(' -h, --help : help'));
+  console.log(chalk.red('NOTE : '));
   console.table([
-    "Enter the node name without node-red-contrib-",
-    "Enter some node description. Can be modified later from the editor",
-    "Enter some function name in camel casing. Can be modified later from the editor",
-    "Enter some lib name in camel casing. Can be modified later from the editor",
-    "Enter the path of the lib. Can be modified later from the editor",
+    'Enter the node name without node-red-contrib-',
+    'Enter some node description. Can be modified later from the editor',
+    'Enter some function name in camel casing. Can be modified later from the editor',
+    'Enter some lib name in camel casing. Can be modified later from the editor',
+    'Enter the path of the lib. Can be modified later from the editor',
   ]);
-  console.log("Happy Coding :) ");
+  console.log('Happy Coding :) ');
 };
 
 const main = () => {
   const options = {
     help: {
-      short: "h",
-      type: "boolean",
+      short: 'h',
+      type: 'boolean',
     },
   };
   let args = process.argv;
