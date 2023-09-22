@@ -1,6 +1,6 @@
 {
   "name": "generate-node-red-node",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "tool to generate node-red node",
   "main": "./src/index.js",
   "repository": {
