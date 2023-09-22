@@ -1,11 +1,10 @@
 # Generate Node-RED Node
 
-Generate Node-RED Node is a powerful tool designed to simplify and streamline the process of creating custom Node-RED nodes for your Node-RED flows. Whether you're a developer looking to extend Node-RED's functionality or a Node-RED enthusiast looking to add custom nodes to your flows, this tool can help you generate the code you need quickly and efficiently.
+Generate Node-RED Node is a powerful command-line tool designed to simplify and streamline the process of creating custom Node-RED nodes. Node-RED is a popular flow-based development tool for visual programming, and custom nodes are an essential part of extending its functionality. This tool empowers Node-RED developers by automating much of the node creation process, saving time and effort.
 
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Customization](#customization)
@@ -18,11 +17,36 @@ Node-RED is an open-source flow-based development tool for visual programming. I
 
 However, writing custom Node-RED nodes from scratch can be a complex and time-consuming task, especially for beginners. This is where Generate Node-RED Node comes in. It simplifies the node creation process by providing a user-friendly interface to configure your node and generate the necessary code.
 
-## Features
-
 ## Getting Started
 
+To create a Node-RED node using this tool, follow these simple steps:
+
+1. Open your terminal or command prompt.
+
+2. Run the following command:
+
+   ```bash
+   npx generate-node-red-node
+   ```
+
+   This command will start the node generation wizard and guide you through the process.
+
+3. For help run the following command with **-h** tag
+    ```bash
+   npx generate-node-red-node -h
+   ```
+
 ## Usage
+
+The tool will prompt you to provide several pieces of information to configure your Node-RED node, including:
+
+- Node name (without "node-red-contrib-")
+- Node description
+- Function name (in camel casing)
+- Library name (in camel casing)
+- Library path
+
+Once you've provided this information, the tool will generate the necessary code for your custom node.
 
 ## Customization
 
@@ -42,3 +66,6 @@ We welcome contributions from the Node-RED community. If you want to contribute 
 Generate Node-RED Node is distributed under the [MIT License](LICENSE). You are free to use, modify, and distribute this tool for your projects. Please refer to the license file for more details.
 
 Thank you for using Generate Node-RED Node, and we hope it makes your Node-RED node development process easier and more efficient! If you have any questions or encounter issues, feel free to reach out to the community for support.
+
+
+This revised README provides a clearer and more organized structure, with detailed information on how to use and contribute to the tool.
