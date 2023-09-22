@@ -3,6 +3,9 @@
 Generate Node-RED Node is a powerful command-line tool designed to simplify and streamline the process of creating custom Node-RED nodes. Node-RED is a popular flow-based development tool for visual programming, and custom nodes are an essential part of extending its functionality. This tool empowers Node-RED developers by automating much of the node creation process, saving time and effort.
 
 [![Node.js Package](https://github.com/itsvinayak/generate-node-red-node/actions/workflows/npm-publish.yml/badge.svg?event=release)](https://github.com/itsvinayak/generate-node-red-node/actions/workflows/npm-publish.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 <a src="https://www.npmjs.com/package/generate-node-red-node">
    
    ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
