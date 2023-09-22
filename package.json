@@ -6,6 +6,9 @@
   "repository": {
     "url": "https://github.com/itsvinayak/generate-node-red-node.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "node-red",
     "node-red-node",
