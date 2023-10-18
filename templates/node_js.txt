@@ -1,4 +1,4 @@
-const lib = require('{{lib_path}}')
+const lib = require('{{lib_path}}');
 
 module.exports = function (RED) {
   function {{node_function_name}}(config) {
