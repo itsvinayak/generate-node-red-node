@@ -20,7 +20,7 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
-
+<!-- This node was generated using generate-node-red-node -->
 <script type="text/x-red" data-help-name="{{node_name}}">
     <p>{{node_description}}</p>
 </script> 
